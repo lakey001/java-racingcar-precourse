@@ -1,4 +1,4 @@
-package racingcar.domain.RacingCar;
+package racingcar.domain;
 
 public class RacingCar {
     public static final int VALUE_CAR_GO_FORWARD = 4;
