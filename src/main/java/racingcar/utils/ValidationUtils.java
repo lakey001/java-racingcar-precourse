@@ -18,6 +18,15 @@ public class ValidationUtils {
         return StringConst.RESULT_SUCCESS;
     }
 
+    public static String validateRepeatCountInput(String repeatCount) {
+        try {
+            validateRepeatCount(repeatCount);
+        } catch (IllegalArgumentException e) {
+            return e.getMessage();
+        }
+        return StringConst.RESULT_SUCCESS;
+    }
+
     private static boolean validateCarNames(String[] carNames) {
         for (String carName : carNames) {
             validateCarNameLength(carName);
@@ -33,5 +42,15 @@ public class ValidationUtils {
                 String.format(ErrorMessageConst.ERROR_MESSAGE_INVALID_CAR_NAME_LENGTH_FORMAT,
                         MIN_CAR_NAME_LENGTH, MAX_CAR_NAME_LENGTH)
         );
+    }
+
+    private static void validateRepeatCount(String repeatCount) {
+        try {
+            Integer.parseInt(repeatCount);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(
+                    String.format(ErrorMessageConst.ERROR_MESSAGE_INVALID_REPEAT_COUNT_FORMAT, Integer.MAX_VALUE)
+            );
+        }
     }
 }
