@@ -19,21 +19,17 @@ public class RacingCarTest {
     @Test
     @DisplayName("RacingCar 초기화 테스트: 차이름 5자 초과로 오류 발생")
     void 초기화_테스트_오류발생_5자초과(){
-        assertThatIllegalArgumentException().isThrownBy(
-                ()->{
-                    RacingCar invalidCar = new RacingCar("car123");
-                }).withMessageContaining(
-                String.format(ErrorMessageConst.ERROR_MESSAGE_INVALID_CAR_NAME_LENGTH_FORMAT, 1, 5));
+        assertThatIllegalArgumentException().isThrownBy(()-> new RacingCar("car123"))
+                .withMessageContaining(
+                        String.format(ErrorMessageConst.ERROR_MESSAGE_INVALID_CAR_NAME_LENGTH_FORMAT, 1, 5));
     }
 
     @Test
     @DisplayName("RacingCars 초기화 테스트: 차이름 1자 미만으로 오류 발생")
     void 초기화_테스트_오류발생_1자미만(){
-        assertThatIllegalArgumentException().isThrownBy(
-                ()->{
-                    RacingCar invalidCar = new RacingCar("");
-                }).withMessageContaining(
-                String.format(ErrorMessageConst.ERROR_MESSAGE_INVALID_CAR_NAME_LENGTH_FORMAT, 1, 5));
+        assertThatIllegalArgumentException().isThrownBy(()-> new RacingCar(""))
+                .withMessageContaining(
+                        String.format(ErrorMessageConst.ERROR_MESSAGE_INVALID_CAR_NAME_LENGTH_FORMAT, 1, 5));
     }
 
     @ParameterizedTest(name = "전진 테스트 : 입력값 = {0}, 결과 = {1}")
