@@ -28,22 +28,13 @@ public class RacingController {
     }
 
     private static int readRepeatCount(){
-        String repeatCount = InputView.readRepeatCount();
-        boolean valid = isValidRepeatCount(repeatCount);
-        while(!valid){
-            repeatCount = InputView.readRepeatCount();
-            valid = isValidRepeatCount(repeatCount);
+        try {
+            String repeatCount = InputView.readRepeatCount();
+            return ValidationUtils.convertRepeatCountToInteger(repeatCount);
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return readRepeatCount();
         }
-        return Integer.parseInt(repeatCount);
-    }
-
-    private static boolean isValidRepeatCount(String repeatCount) {
-        String validateResult = ValidationUtils.validateRepeatCountInput(repeatCount);
-        if (validateResult.equals(StringConst.RESULT_SUCCESS)) {
-            return true;
-        }
-        OutputView.printError(validateResult);
-        return false;
     }
 
     private static void race(RacingCars cars, int repeatCount) {

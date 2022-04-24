@@ -1,25 +1,25 @@
 package racingcar.utils;
 
 import racingcar.constant.ErrorMessageConst;
-import racingcar.constant.StringConst;
 
 public class ValidationUtils {
-    public static String validateRepeatCountInput(String repeatCount) {
+    public static int convertRepeatCountToInteger(String repeatCount) {
         try {
-            validateRepeatCount(repeatCount);
-        } catch (IllegalArgumentException e) {
-            return e.getMessage();
-        }
-        return StringConst.RESULT_SUCCESS;
-    }
-
-    private static void validateRepeatCount(String repeatCount) {
-        try {
-            Integer.parseInt(repeatCount);
+            int result = Integer.parseInt(repeatCount);
+            return validateNaturalNumber(result);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(
                     String.format(ErrorMessageConst.ERROR_MESSAGE_INVALID_REPEAT_COUNT_FORMAT, Integer.MAX_VALUE)
             );
         }
+    }
+
+    private static int validateNaturalNumber(int number) {
+        if( number > 0){
+            return number;
+        }
+        throw new IllegalArgumentException(
+                String.format(ErrorMessageConst.ERROR_MESSAGE_INVALID_REPEAT_COUNT_FORMAT, Integer.MAX_VALUE)
+        );
     }
 }
