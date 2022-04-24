@@ -17,7 +17,7 @@ public class OutputView {
         for (String[] status : statusList) {
             printStatus(status);
         }
-        System.out.print("\n");
+        System.out.print(StringConst.ESC_NEW_LINE);
     }
     public static void printFinalResult(RacingCars cars) {
         String[] winnerNames = cars.getWinnerNames();
