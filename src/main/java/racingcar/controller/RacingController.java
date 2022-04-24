@@ -56,5 +56,6 @@ public class RacingController {
             cars.moveCars();
             OutputView.printSingleRoundResult(cars);
         }
+        OutputView.printFinalResult(cars);
     }
 }

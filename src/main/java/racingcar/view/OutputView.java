@@ -19,6 +19,20 @@ public class OutputView {
         }
         System.out.print("\n");
     }
+    public static void printFinalResult(RacingCars cars) {
+        String[] winnerNames = cars.getWinnerNames();
+        System.out.println(
+                String.format(ViewMessageConst.MESSAGE_FORMAT_WINNER_NAMES, arrayToStringFormat(winnerNames))
+        );
+    }
+
+    private static String arrayToStringFormat(String[] winnerNames) {
+        StringJoiner sj = new StringJoiner(StringConst.CHAR_COMMA);
+        for (String name : winnerNames) {
+            sj.add(name);
+        }
+        return sj.toString();
+    }
 
     private static void printStatus(String[] status) {
         System.out.println(
