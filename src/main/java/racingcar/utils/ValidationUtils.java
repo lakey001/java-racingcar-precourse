@@ -2,12 +2,9 @@ package racingcar.utils;
 
 import racingcar.constant.ErrorMessageConst;
 import racingcar.constant.StringConst;
+import racingcar.constant.ValueConst;
 
 public class ValidationUtils {
-
-    public static final int MAX_CAR_NAME_LENGTH = 5;
-    public static final int MIN_CAR_NAME_LENGTH = 1;
-
     public static String validateCarNamesInput(String carNamesInput) {
         String[] carNames = carNamesInput.split(StringConst.CHAR_COMMA);
         try {
@@ -35,12 +32,13 @@ public class ValidationUtils {
     }
 
     private static boolean validateCarNameLength(String carName) {
-        if(carName.length() <= MAX_CAR_NAME_LENGTH && carName.length() >= MIN_CAR_NAME_LENGTH){
+        if(carName.length() <= ValueConst.VALUE_CARNAME_MAX_LENGTH
+                && carName.length() >= ValueConst.VALUE_CARNAME_MIN_LENGTH){
             return true;
         }
         throw new IllegalArgumentException(
                 String.format(ErrorMessageConst.ERROR_MESSAGE_INVALID_CAR_NAME_LENGTH_FORMAT,
-                        MIN_CAR_NAME_LENGTH, MAX_CAR_NAME_LENGTH)
+                        ValueConst.VALUE_CARNAME_MIN_LENGTH, ValueConst.VALUE_CARNAME_MAX_LENGTH)
         );
     }
 

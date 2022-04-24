@@ -1,13 +1,14 @@
 package racingcar.domain;
 
+import racingcar.constant.ValueConst;
+
 public class RacingCar {
-    public static final int VALUE_CAR_GO_FORWARD = 4;
     private String name;
     private int position;
 
     public RacingCar(String name) {
         this.name = name;
-        this.position = 0;
+        this.position = ValueConst.VALUE_CAR_INITIAL_POSITION;
     }
 
     public String getName() {
@@ -19,7 +20,7 @@ public class RacingCar {
     }
 
     public void move(int number) {
-        if (number >= VALUE_CAR_GO_FORWARD) {
+        if (number >= ValueConst.VALUE_CAR_GO_FORWARD) {
             goForward();
         }
     }
