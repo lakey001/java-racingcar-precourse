@@ -8,19 +8,23 @@ import racingcar.view.OutputView;
 
 public class RacingController {
     public static void start(){
-        RacingCars cars = new RacingCars(readCarNames());
+        RacingCars cars = createRacingCars();
         int repeatCount = readRepeatCount();
         race(cars, repeatCount);
     }
 
-    private static String[] readCarNames(){
-        String carNames = InputView.readCarNames();
-        boolean valid = isValidCarNames(carNames);
-        while(!valid){
-            carNames = InputView.readCarNames();
-            valid = isValidCarNames(carNames);
+    private static RacingCars createRacingCars() {
+        try {
+            RacingCars cars = new RacingCars(readCarNames());
+            return cars;
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return createRacingCars();
         }
-        return carNames.split(StringConst.CHAR_COMMA);
+    }
+
+    private static String[] readCarNames(){
+        return InputView.readCarNames().split(StringConst.CHAR_COMMA);
     }
 
     private static int readRepeatCount(){
@@ -31,15 +35,6 @@ public class RacingController {
             valid = isValidRepeatCount(repeatCount);
         }
         return Integer.parseInt(repeatCount);
-    }
-
-    private static boolean isValidCarNames(String carNames) {
-        String validateResult = ValidationUtils.validateCarNamesInput(carNames);
-        if (validateResult.equals(StringConst.RESULT_SUCCESS)) {
-            return true;
-        }
-        OutputView.printError(validateResult);
-        return false;
     }
 
     private static boolean isValidRepeatCount(String repeatCount) {

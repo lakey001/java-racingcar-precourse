@@ -3,16 +3,16 @@ package racingcar.domain;
 import racingcar.constant.ValueConst;
 
 public class RacingCar {
-    private String name;
+    private RacingCarName name;
     private int position;
 
     public RacingCar(String name) {
-        this.name = name;
+        this.name = new RacingCarName(name);
         this.position = ValueConst.VALUE_CAR_INITIAL_POSITION;
     }
 
     public String getName() {
-        return name;
+        return name.getValue();
     }
 
     public int getPosition() {
