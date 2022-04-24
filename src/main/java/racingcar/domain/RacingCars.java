@@ -19,4 +19,16 @@ public class RacingCars {
             car.move(Randoms.pickNumberInRange(0, 9));
         }
     }
+    public String[][] getCurrentStatus() {
+        String[][] status = new String[racingCars.size()][2];
+        for (int i = 0; i < racingCars.size(); i++) {
+            status[i] = generateStatus(racingCars.get(i));
+        }
+        return status;
+    }
+
+    private String[] generateStatus(RacingCar racingCar) {
+        String[] status = {racingCar.getName(), String.valueOf(racingCar.getPosition())};
+        return status;
+    }
 }

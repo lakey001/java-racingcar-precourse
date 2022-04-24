@@ -10,6 +10,7 @@ public class RacingController {
     public static void start(){
         RacingCars cars = new RacingCars(readCarNames());
         int repeatCount = readRepeatCount();
+        race(cars, repeatCount);
     }
 
     private static String[] readCarNames(){
@@ -48,5 +49,12 @@ public class RacingController {
         }
         OutputView.printError(validateResult);
         return false;
+    }
+
+    private static void race(RacingCars cars, int repeatCount) {
+        for (int i = 0; i < repeatCount; i++) {
+            cars.moveCars();
+            OutputView.printSingleRoundResult(cars);
+        }
     }
 }
