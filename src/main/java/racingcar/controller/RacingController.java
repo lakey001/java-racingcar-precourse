@@ -3,7 +3,7 @@ package racingcar.controller;
 import racingcar.constant.StringConst;
 import racingcar.domain.RacingCars;
 import racingcar.domain.RacingGame;
-import racingcar.utils.ValidationUtils;
+import racingcar.utils.ConvertUtils;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -39,7 +39,7 @@ public class RacingController {
     private static int readRepeatCount(){
         try {
             String repeatCount = InputView.readRepeatCount();
-            return ValidationUtils.convertRepeatCountToInteger(repeatCount);
+            return ConvertUtils.convertRepeatCountToInteger(repeatCount);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return readRepeatCount();

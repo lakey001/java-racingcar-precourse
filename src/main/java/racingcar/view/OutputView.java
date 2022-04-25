@@ -4,8 +4,9 @@ import racingcar.constant.ErrorMessageConst;
 import racingcar.constant.StringConst;
 import racingcar.constant.ViewMessageConst;
 import racingcar.domain.RacingGame;
+import racingcar.utils.ConvertUtils;
+
 import java.util.List;
-import java.util.StringJoiner;
 
 public class OutputView {
     public static void printError(String errorMessage) {
@@ -16,7 +17,7 @@ public class OutputView {
         System.out.println(ViewMessageConst.MESSAGE_PRINT_RACE_RESULT);
         List<String[]> currentCarsStatus = game.getCurrentCarsStatus();
         for (String[] status : currentCarsStatus) {
-            printStatus(status);
+            printCarStatus(status);
         }
         System.out.print(StringConst.ESC_NEW_LINE);
     }
@@ -24,29 +25,15 @@ public class OutputView {
     public static void printRacingGameFinalResult(RacingGame game) {
         List<String> winnerNames = game.getWinnerNames();
         System.out.println(
-                String.format(ViewMessageConst.MESSAGE_PRINT_WINNER_NAMES_FORMAT, convertArrayListToString(winnerNames))
+                String.format(ViewMessageConst.MESSAGE_PRINT_WINNER_NAMES_FORMAT,
+                        ConvertUtils.convertWinnerNamesListToString(winnerNames))
         );
     }
 
-    private static String convertArrayListToString(List<String> names) {
-        StringJoiner sj = new StringJoiner(StringConst.CHAR_COMMA);
-        for (String name : names) {
-            sj.add(name);
-        }
-        return sj.toString();
-    }
-
-    private static void printStatus(String[] status) {
+    private static void printCarStatus(String[] status) {
         System.out.println(
-                String.format(ViewMessageConst.MESSAGE_PRINT_RACE_STATUS_FORMAT, status[0], printPosition(status[1]))
+                String.format(ViewMessageConst.MESSAGE_PRINT_RACE_STATUS_FORMAT,
+                        status[0], ConvertUtils.convertPositionToHyphenString(status[1]))
         );
-    }
-
-    private static String printPosition(String status) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < Integer.parseInt(status); i++) {
-            sb.append(StringConst.CHAR_HYPHEN);
-        }
-        return sb.toString();
     }
 }
