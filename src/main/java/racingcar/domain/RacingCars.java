@@ -39,10 +39,10 @@ public class RacingCars {
         return maxPosition;
     }
 
-    public List<String> getCarNamesByPosition(int winnerPosition) {
+    public List<String> getCarNamesByPosition(int position) {
         List<String> result = new ArrayList<>();
         for (RacingCar car : racingCars) {
-            addCarNamesAtPosition(result, car, winnerPosition);
+            addCarNamesAtPosition(result, car, position);
         }
         return result;
     }

@@ -7,6 +7,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racingcar.constant.ErrorMessageConst;
 
+import java.util.List;
+
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -58,6 +60,35 @@ public class RacingCarsTest {
                     assertThat(currentStatus[idx][1]).isEqualTo(position);
                 },
                 0,4,9
+        );
+    }
+
+    @Test
+    @DisplayName("최대 Position 결과 테스트")
+    void getMaxPositionTest(){
+        assertRandomNumberInRangeTest(
+                () -> {
+                    cars.moveCars();
+                    cars.moveCars();
+                    assertThat(cars.getMaxPosition()).isEqualTo(2);
+                },
+                0,4,9,0,4,9
+        );
+    }
+
+    @Test
+    @DisplayName("Position에 있는 차 이름 구하기 테스트")
+    void Position_차_이름_구하기_테스트(){
+        assertRandomNumberInRangeTest(
+                () -> {
+                    cars.moveCars();
+                    cars.moveCars();
+                    List<String> carNames = cars.getCarNamesByPosition(2);
+                    assertThat(carNames).hasSize(2);
+                    assertThat(carNames.get(0)).isEqualTo("car2");
+                    assertThat(carNames.get(1)).isEqualTo("car3");
+                },
+                0,4,9,0,4,9
         );
     }
 }
