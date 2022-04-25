@@ -1,11 +1,13 @@
 package racingcar.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import racingcar.constant.ValueConst;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RacingCars {
+    public static final int VALUE_RANDOM_MIN = 0;
+    public static final int VALUE_RANDOM_MAX = 9;
+
     private final List<RacingCar> racingCars;
 
     public RacingCars(String[] carNames) {
@@ -17,7 +19,7 @@ public class RacingCars {
 
     public void moveCars() {
         for (RacingCar car : racingCars) {
-            car.move(Randoms.pickNumberInRange(ValueConst.VALUE_RANDOM_MIN, ValueConst.VALUE_RANDOM_MAX));
+            car.move(Randoms.pickNumberInRange(VALUE_RANDOM_MIN, VALUE_RANDOM_MAX));
         }
     }
 
