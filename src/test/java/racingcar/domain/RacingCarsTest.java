@@ -56,8 +56,8 @@ public class RacingCarsTest {
         assertRandomNumberInRangeTest(
                 () -> {
                     cars.moveCars();
-                    String[][] currentStatus = cars.getCurrentStatus();
-                    assertThat(currentStatus[idx][1]).isEqualTo(position);
+                    List<String[]> currentStatus = cars.getCurrentStatus();
+                    assertThat(currentStatus.get(idx)[1]).isEqualTo(position);
                 },
                 0,4,9
         );

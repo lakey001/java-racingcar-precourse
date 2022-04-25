@@ -23,12 +23,12 @@ public class RacingCars {
         }
     }
 
-    public String[][] getCurrentStatus() {
-        String[][] status = new String[racingCars.size()][2];
+    public List<String[]> getCurrentStatus() {
+        List<String[]> currentStatus = new ArrayList<>();
         for (int i = 0; i < racingCars.size(); i++) {
-            status[i] = generateStatus(racingCars.get(i));
+            currentStatus.add(generateStatus(racingCars.get(i)));
         }
-        return status;
+        return currentStatus;
     }
 
     public int getMaxPosition() {

@@ -14,7 +14,7 @@ public class OutputView {
 
     public static void printRacingGameSingleRoundResult(RacingGame game) {
         System.out.println(ViewMessageConst.MESSAGE_PRINT_RACE_RESULT);
-        String[][] currentCarsStatus = game.getCurrentCarsStatus();
+        List<String[]> currentCarsStatus = game.getCurrentCarsStatus();
         for (String[] status : currentCarsStatus) {
             printStatus(status);
         }

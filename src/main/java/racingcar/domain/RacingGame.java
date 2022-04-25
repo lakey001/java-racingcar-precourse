@@ -24,19 +24,19 @@ public class RacingGame {
         updateSingleRound();
     }
 
-    private void updateSingleRound() {
-        finishCount ++;
-        if (finishCount == repeatCount.getValue()) {
-            gameEnd = true;
-        }
-    }
-
-    public String[][] getCurrentCarsStatus() {
+    public List<String[]> getCurrentCarsStatus() {
         return cars.getCurrentStatus();
     }
 
     public List<String> getWinnerNames() {
         int winnerPosition = cars.getMaxPosition();
         return cars.getCarNamesByPosition(winnerPosition);
+    }
+
+    private void updateSingleRound() {
+        finishCount ++;
+        if (finishCount == repeatCount.getValue()) {
+            gameEnd = true;
+        }
     }
 }

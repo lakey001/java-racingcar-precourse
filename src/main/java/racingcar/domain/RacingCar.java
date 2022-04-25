@@ -1,7 +1,8 @@
 package racingcar.domain;
 
 public class RacingCar {
-    public static final int VALUE_CAR_GO_FORWARD = 4;
+    public static final int VALUE_CAR_GO_FORWARD_CRITERION = 4;
+    public static final int VALUE_CAR_GO_FORWARD_UNIT = 1;
     public static final int VALUE_CAR_INITIAL_POSITION = 0;
 
     private RacingCarName name;
@@ -21,12 +22,12 @@ public class RacingCar {
     }
 
     public void move(int number) {
-        if (number >= VALUE_CAR_GO_FORWARD) {
+        if (number >= VALUE_CAR_GO_FORWARD_CRITERION) {
             goForward();
         }
     }
 
     private void goForward() {
-        position ++;
+        position += VALUE_CAR_GO_FORWARD_UNIT;
     }
 }

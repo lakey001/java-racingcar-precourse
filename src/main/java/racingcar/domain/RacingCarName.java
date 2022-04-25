@@ -3,8 +3,8 @@ package racingcar.domain;
 import racingcar.constant.ErrorMessageConst;
 
 public class RacingCarName {
-    public static final int VALUE_CARNAME_MAX = 5;
     public static final int VALUE_CARNAME_MIN = 1;
+    public static final int VALUE_CARNAME_MAX = 5;
 
     private String name;
 
