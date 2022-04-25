@@ -13,7 +13,7 @@ public class OutputView {
     }
 
     public static void printRacingGameSingleRoundResult(RacingGame game) {
-        System.out.println(ViewMessageConst.MESSAGE_RACE_RESULT);
+        System.out.println(ViewMessageConst.MESSAGE_PRINT_RACE_RESULT);
         String[][] currentCarsStatus = game.getCurrentCarsStatus();
         for (String[] status : currentCarsStatus) {
             printStatus(status);
@@ -24,7 +24,7 @@ public class OutputView {
     public static void printRacingGameFinalResult(RacingGame game) {
         List<String> winnerNames = game.getWinnerNames();
         System.out.println(
-                String.format(ViewMessageConst.MESSAGE_FORMAT_WINNER_NAMES, convertArrayListToString(winnerNames))
+                String.format(ViewMessageConst.MESSAGE_PRINT_WINNER_NAMES_FORMAT, convertArrayListToString(winnerNames))
         );
     }
 
@@ -38,7 +38,7 @@ public class OutputView {
 
     private static void printStatus(String[] status) {
         System.out.println(
-                String.format(ViewMessageConst.MESSAGE_FORMAT_RACE_STATUS, status[0], printPosition(status[1]))
+                String.format(ViewMessageConst.MESSAGE_PRINT_RACE_STATUS_FORMAT, status[0], printPosition(status[1]))
         );
     }
 

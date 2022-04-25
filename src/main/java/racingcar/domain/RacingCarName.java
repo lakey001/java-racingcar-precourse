@@ -9,6 +9,9 @@ public class RacingCarName {
     private String name;
 
     public RacingCarName(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException(ErrorMessageConst.ERROR_MESSAGE_INVALID_CAR_NAME_NULL);
+        }
         if(name.length() > VALUE_CARNAME_MAX || name.length() < VALUE_CARNAME_MIN){
             throw new IllegalArgumentException(
                     String.format(ErrorMessageConst.ERROR_MESSAGE_INVALID_CAR_NAME_LENGTH_FORMAT,

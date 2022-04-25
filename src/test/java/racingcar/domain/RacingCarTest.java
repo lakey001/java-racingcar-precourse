@@ -32,6 +32,13 @@ public class RacingCarTest {
                         String.format(ErrorMessageConst.ERROR_MESSAGE_INVALID_CAR_NAME_LENGTH_FORMAT, 1, 5));
     }
 
+    @Test
+    @DisplayName("RacingCars 초기화 테스트: 차이름 null로 오류 발생")
+    void 초기화_테스트_오류발생_null(){
+        assertThatIllegalArgumentException().isThrownBy(() -> new RacingCar(null))
+                .withMessageContaining(ErrorMessageConst.ERROR_MESSAGE_INVALID_CAR_NAME_NULL);
+    }
+
     @ParameterizedTest(name = "전진 테스트 : 입력값 = {0}, 결과 = {1}")
     @DisplayName("전진 테스트")
     @CsvSource(value = {"4:1", "9:1", "0:0", "3:0"}, delimiter = ':')
