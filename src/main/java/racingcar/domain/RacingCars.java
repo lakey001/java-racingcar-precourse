@@ -29,6 +29,22 @@ public class RacingCars {
         return status;
     }
 
+    public int getMaxPosition() {
+        int maxPosition = 0;
+        for (RacingCar car : racingCars) {
+            maxPosition = Math.max(maxPosition, car.getPosition());
+        }
+        return maxPosition;
+    }
+
+    public List<String> getCarNamesByPosition(int winnerPosition) {
+        List<String> result = new ArrayList<>();
+        for (RacingCar car : racingCars) {
+            addCarNamesAtPosition(result, car, winnerPosition);
+        }
+        return result;
+    }
+
     public List<RacingCar> getRacingCars() {
         return racingCars;
     }
@@ -36,23 +52,6 @@ public class RacingCars {
     private String[] generateStatus(RacingCar racingCar) {
         String[] status = {racingCar.getName(), String.valueOf(racingCar.getPosition())};
         return status;
-    }
-
-    public String[] getWinnerNames() {
-        int maxPosition = getMaxPosition();
-        List<String> winnerNames = new ArrayList<>();
-        for (RacingCar car : racingCars) {
-            addCarNamesAtPosition(winnerNames, car, maxPosition);
-        }
-        return winnerNames.toArray(new String[winnerNames.size()]);
-    }
-
-    private int getMaxPosition() {
-        int maxPosition = 0;
-        for (RacingCar car : racingCars) {
-            maxPosition = Math.max(maxPosition, car.getPosition());
-        }
-        return maxPosition;
     }
 
     private void addCarNamesAtPosition(List<String> carNames, RacingCar car, int position) {

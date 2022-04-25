@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.constant.StringConst;
 import racingcar.domain.RacingCars;
+import racingcar.domain.RacingGame;
 import racingcar.utils.ValidationUtils;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -9,17 +10,25 @@ import racingcar.view.OutputView;
 public class RacingController {
     public static void start(){
         RacingCars cars = createRacingCars();
-        int repeatCount = readRepeatCount();
-        race(cars, repeatCount);
+        RacingGame game = createRacingGame(cars);
+        playRacingGame(game);
     }
 
     private static RacingCars createRacingCars() {
         try {
-            RacingCars cars = new RacingCars(readCarNames());
-            return cars;
+            return new RacingCars(readCarNames());
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return createRacingCars();
+        }
+    }
+
+    private static RacingGame createRacingGame(RacingCars cars) {
+        try {
+            return new RacingGame(cars, readRepeatCount());
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return createRacingGame(cars);
         }
     }
 
@@ -37,11 +46,11 @@ public class RacingController {
         }
     }
 
-    private static void race(RacingCars cars, int repeatCount) {
-        for (int i = 0; i < repeatCount; i++) {
-            cars.moveCars();
-            OutputView.printSingleRoundResult(cars);
+    private static void playRacingGame(RacingGame game) {
+        while(!game.isGameEnd()){
+            game.playSingleRound();
+            OutputView.printRacingGameSingleRoundResult(game);
         }
-        OutputView.printFinalResult(cars);
+        OutputView.printRacingGameFinalResult(game);
     }
 }

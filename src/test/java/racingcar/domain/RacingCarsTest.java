@@ -60,35 +60,4 @@ public class RacingCarsTest {
                 0,4,9
         );
     }
-
-    @Test
-    @DisplayName("최종 우승자 테스트: 단독우승")
-    void 최종_우승자_테스트_단독우승(){
-        assertRandomNumberInRangeTest(
-                () -> {
-                    cars.moveCars();
-                    cars.moveCars();
-                    String[] winnerNames = cars.getWinnerNames();
-                    assertThat(winnerNames).hasSize(1);
-                    assertThat(winnerNames[0]).isEqualTo("car2");
-                },
-                0,4,4,0,4,0
-        );
-    }
-
-    @Test
-    @DisplayName("최종 우승자 테스트: 공동우승")
-    void 최종_우승자_테스트_공동우승(){
-        assertRandomNumberInRangeTest(
-                () -> {
-                    cars.moveCars();
-                    cars.moveCars();
-                    String[] winnerNames = cars.getWinnerNames();
-                    assertThat(winnerNames).hasSize(2);
-                    assertThat(winnerNames[0]).isEqualTo("car2");
-                    assertThat(winnerNames[1]).isEqualTo("car3");
-                },
-                0,4,4,0,4,4
-        );
-    }
 }

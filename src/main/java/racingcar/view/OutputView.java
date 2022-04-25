@@ -3,7 +3,8 @@ package racingcar.view;
 import racingcar.constant.ErrorMessageConst;
 import racingcar.constant.StringConst;
 import racingcar.constant.ViewMessageConst;
-import racingcar.domain.RacingCars;
+import racingcar.domain.RacingGame;
+import java.util.List;
 import java.util.StringJoiner;
 
 public class OutputView {
@@ -11,24 +12,25 @@ public class OutputView {
         System.out.println(ErrorMessageConst.ERROR_PREFIX + errorMessage);
     }
 
-    public static void printSingleRoundResult(RacingCars cars) {
+    public static void printRacingGameSingleRoundResult(RacingGame game) {
         System.out.println(ViewMessageConst.MESSAGE_RACE_RESULT);
-        String[][] statusList = cars.getCurrentStatus();
-        for (String[] status : statusList) {
+        String[][] currentCarsStatus = game.getCurrentCarsStatus();
+        for (String[] status : currentCarsStatus) {
             printStatus(status);
         }
         System.out.print(StringConst.ESC_NEW_LINE);
     }
-    public static void printFinalResult(RacingCars cars) {
-        String[] winnerNames = cars.getWinnerNames();
+
+    public static void printRacingGameFinalResult(RacingGame game) {
+        List<String> winnerNames = game.getWinnerNames();
         System.out.println(
-                String.format(ViewMessageConst.MESSAGE_FORMAT_WINNER_NAMES, arrayToStringFormat(winnerNames))
+                String.format(ViewMessageConst.MESSAGE_FORMAT_WINNER_NAMES, convertArrayListToString(winnerNames))
         );
     }
 
-    private static String arrayToStringFormat(String[] winnerNames) {
+    private static String convertArrayListToString(List<String> names) {
         StringJoiner sj = new StringJoiner(StringConst.CHAR_COMMA);
-        for (String name : winnerNames) {
+        for (String name : names) {
             sj.add(name);
         }
         return sj.toString();
