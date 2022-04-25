@@ -2,7 +2,6 @@ package racingcar.utils;
 
 import racingcar.constant.ErrorMessageConst;
 import racingcar.constant.StringConst;
-
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -25,9 +24,9 @@ public class ConvertUtils {
         return sj.toString();
     }
 
-    public static String convertPositionToHyphenString(String status) {
+    public static String convertPositionToHyphenString(String position) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < Integer.parseInt(status); i++) {
+        for (int i = 0; i < Integer.parseInt(position); i++) {
             sb.append(StringConst.CHAR_HYPHEN);
         }
         return sb.toString();
