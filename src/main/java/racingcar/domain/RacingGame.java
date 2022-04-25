@@ -4,13 +4,13 @@ import java.util.List;
 
 public class RacingGame {
     private RacingCars cars;
-    private int repeatCount;
+    private RepeatCount repeatCount;
     private int finishCount;
     private boolean gameEnd;
 
     public RacingGame(RacingCars cars, int repeatCount) {
         this.cars = cars;
-        this.repeatCount = repeatCount;
+        this.repeatCount = new RepeatCount(repeatCount);
         this.finishCount = 0;
         this.gameEnd = false;
     }
@@ -26,7 +26,7 @@ public class RacingGame {
 
     private void updateSingleRound() {
         finishCount ++;
-        if (finishCount == repeatCount) {
+        if (finishCount == repeatCount.getValue()) {
             gameEnd = true;
         }
     }
